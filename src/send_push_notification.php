@@ -12,7 +12,7 @@ $subscription = Subscription::create(json_decode(file_get_contents('php://input'
 
 $auth = array(
     'VAPID' => array(
-        'subject' => 'https://demonstration-notif.netlify.app/',
+        'subject' => 'https://spiffy-lamington-2baa0c.netlify.app/',
         'publicKey' => file_get_contents(__DIR__ . '/../keys/public_key.txt'), // don't forget that your public key also lives in app.js
         'privateKey' => file_get_contents(__DIR__ . '/../keys/private_key.txt'), // in the real world, this would be in a secret file
     ),

@@ -1,4 +1,15 @@
 <?php
+$ch = curl_init();
+$url = $_GET["url"];
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_HEADER, false);
+
+$response = curl_exec($ch);
+
+header("Access-Control-Allow-Origin: *");
+
+curl_close($ch);
+flush();
 
 $subscription = json_decode(file_get_contents('php://input'), true);
 
