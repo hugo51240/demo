@@ -21,7 +21,6 @@ this.addEventListener('install', event => {
 
 /** ACTON FETCH **/
 self.addEventListener("fetch", (event) => {
-    /*
     // Nous voulons seulement répondre aux requêtes concernant notre application en testant l'URL de la requête
     event.respondWith(
         caches.open(CACHE_NAME).then(function (cache) {
@@ -33,7 +32,6 @@ self.addEventListener("fetch", (event) => {
             });
         }),
     );
-    */
 });
 
 
@@ -41,7 +39,6 @@ self.addEventListener("fetch", (event) => {
 /** ACTION ACTIVATE **/
 self.addEventListener('activate', function (event) {
     console.log('[Service Worker] is activated but without reset cache');
-    /*
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
@@ -53,7 +50,6 @@ self.addEventListener('activate', function (event) {
             );
         })
     );
-    */
 });
 
 
