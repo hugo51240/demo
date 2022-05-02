@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = subscription.getKey('auth');
     const contentEncoding = (PushManager.supportedContentEncodings || ['aesgcm'])[0];
 
-    return fetch('localhost/push_subscription.php', {
+    return fetch('http://localhost/push_subscription.php', {
       method,
       body: JSON.stringify({
         endpoint: subscription.endpoint,
