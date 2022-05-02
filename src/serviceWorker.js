@@ -21,7 +21,7 @@ this.addEventListener('install', event => {
 
 /** ACTON FETCH **/
 self.addEventListener("fetch", (event) => {
-    // Nous voulons seulement répondre aux requêtes concernant notre application en testant l'URL de la requête
+    /*
     event.respondWith(
         caches.open(CACHE_NAME).then(function (cache) {
             return cache.match(event.request).then(function (response) {
@@ -31,6 +31,17 @@ self.addEventListener("fetch", (event) => {
                 });
             });
         }),
+    );
+    */
+    event.respondWith(
+        caches.match(event.request).catch(function () {
+            return fetch(event.request).then(function (response) {
+                return caches.open(CACHE_NAME).then(function (cache) {
+                    cache.put(event.request, response.clone());
+                    return response;
+                });
+            });
+        })
     );
 });
 
