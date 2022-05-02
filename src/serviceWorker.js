@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache_v3";
+const CACHE_NAME = "cache_v4";
 
 /** ACTION INSTALL **/
 this.addEventListener('install', event => {
@@ -38,7 +38,6 @@ self.addEventListener("fetch", (event) => {
 
 /** ACTION ACTIVATE **/
 self.addEventListener('activate', function (event) {
-    console.log('[Service Worker] is activated but without reset cache');
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
