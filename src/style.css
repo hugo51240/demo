@@ -5,13 +5,14 @@ body {
 
 h1 {
     font-style: italic;
-    text-decoration: underline;
+    text-decoration: wavy;
     color: darkmagenta;
 }
 
 button {
     background-color: darkslateblue;
     color: tan;
+    text-align: center;
     width: 10%;
     height: 3%;
     padding: 30px;
