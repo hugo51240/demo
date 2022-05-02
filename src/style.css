@@ -1,11 +1,11 @@
 body {
     background-color: beige;
-    align-items: center;
+    text-align: center;
 }
 
 h1 {
     font-style: italic;
-    text-decoration: underline, solid;
+    text-decoration: underline;
     color: darkmagenta;
 }
 
@@ -13,7 +13,8 @@ button {
     background-color: darkslateblue;
     color: tan;
     width: 10%;
-    padding: 20%;
+    height: 3%;
+    padding: 30px;
 }
 
 button:hover {
