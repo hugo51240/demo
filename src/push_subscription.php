@@ -46,7 +46,7 @@ $conn = mysqli_connect('127.0.0.1:8080', 'root', '', 'push-notifications');
 
 /*** SELECT ***/
 // On créé la requête
-$req = "SELECT * FROM table1";
+$req = "SELECT * FROM push-notif";
 
 // on envoie la requête
 $res = $conn->query($req);
@@ -55,14 +55,14 @@ $res = $conn->query($req);
 echo "<table>";
 while ($data = mysqli_fetch_array($res)) {
     // on affiche les résultats
-    echo "<tr><td>" . $data['id'] . "</td><td>" . $data['texte'] . "</td></tr>";
+    echo "<tr><td>" . $data['endpoint'] . "</td><td>" . $data['p256dh'] . "</td><td>" . $data['auth'] . "</td></tr>";
 }
 echo "</table>";
 
 
 /*** INSERT ***/
 // On créé la requête
-$req = "INSERT INTO table1(texte) VALUES ('Du texte mysqli')";
+$req = "INSERT INTO push-notif( ? ) VALUES ('Du texte mysqli')";
 
 // on envoie la requête
 $res = $conn->query($req);
@@ -70,7 +70,7 @@ $res = $conn->query($req);
 
 /*** DELETE ***/
 // On créé la requête
-$req = "DELETE FROM table1 WHERE texte='Du texte mysqli'";
+$req = "DELETE FROM push-notif WHERE endpoint='Du texte mysqli'";
 
 // on envoie la requête
 $res = $conn->query($req);
@@ -84,21 +84,21 @@ mysqli_close($conn);
 
 /*** PROTECTION SQL ***/
 // Se protéger des injections SQL
-$username = $conn->real_escape_string($_GET['username']);
-$conn->query("SELECT * FROM users WHERE username = '$username'");
+$endpoint = $conn->real_escape_string($_GET['endpoint']);
+$conn->query("SELECT * FROM push-notif WHERE endpoint = '$endpoint'");
 
 
 
 /*** REQUETE PREPARE ***/
 // mysqli, Requête préparée
-$query = $conn->prepare('SELECT * FROM users WHERE username = ?');
-$query->bind_param('s', $username); // s = string, i = integer
+$query = $conn->prepare('SELECT * FROM push-notif WHERE endpoint = ?');
+$query->bind_param('s', $endpoint); // s = string, i = integer
 $query->execute();
 
 
 /*** TEST LIGNES ***/
 // on crée la requête SQL
-$req = "SELECT * FROM table1 WHERE chk_actif=1;";
+$req = "SELECT * FROM push-notif WHERE chk_actif=1;";
 
 // on envoie la requête
 $res = $conn->query($req) or die();
