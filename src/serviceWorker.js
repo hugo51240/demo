@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache_v4";
+const CACHE_NAME = "cache_v5";
 
 /** ACTION INSTALL **/
 this.addEventListener('install', event => {
@@ -42,9 +42,10 @@ self.addEventListener('activate', function (event) {
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
-                    if (cacheName !== CACHE_NAME)
+                    if (cacheName !== CACHE_NAME) {
                         console.log('[Service Worker] is activated');
-                    return caches.delete(cacheName);
+                        return caches.delete(cacheName);
+                    }
                 })
             );
         })
