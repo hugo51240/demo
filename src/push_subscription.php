@@ -20,9 +20,9 @@ switch ($method) {
 
     case 'PUT':
         // update the key and token of subscription corresponding to the endpoint
-        $bd = new PDO("mysql:host=127.0.0.1:8080;dbname=push-notifications;charset=utf-8", "root", "");
+        $bd = mysqli_connect('127.0.0.1:8080', 'root', '', 'push-notifications');
 
-        $requete = mysqli_connect('127.0.0.1:8080', 'root', '', 'push-notifications');
+        $requete = $bd->prepare(" UPDATE push-notif SET p256=?, auth=? where endpoint=? ");
         $requete->execute(array($_POST['p256dh'], $_POST['auth'], $_POST['endpoint']));
         break;
 
