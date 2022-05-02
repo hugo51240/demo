@@ -1,15 +1,22 @@
 body {
     background-color: beige;
+    align-items: center;
 }
 
 h1 {
+    font-style: italic;
+    text-decoration: underline, solid;
     color: darkmagenta;
 }
 
 button {
+    background-color: darkslateblue;
     color: tan;
+    width: 10%;
+    padding: 20%;
 }
 
 button:hover {
+    background-color: slateblue;
     color: darkgoldenrod;
 }
