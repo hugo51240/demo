@@ -12,7 +12,7 @@ switch ($method) {
 
     case 'POST':
         // create a new subscription entry in your database (endpoint is unique)
-        $bd = new PDO("mysql:host=127.0.0.1:8080;dbname=push-notifications;charset=utf-8", "root", ""); // $mysqli = new mysqli("127.0.0.1:8080", "root", "" ,"push-notifications");
+        $bd = mysqli_connect('127.0.0.1:8080', 'root', '', 'push-notifications');
 
         $requete = $bd->prepare(" INSERT INTO push-notif(endpoint) VALUES ( ? ) ");
         $requete->execute(array($_POST['endpoint']));
@@ -22,13 +22,13 @@ switch ($method) {
         // update the key and token of subscription corresponding to the endpoint
         $bd = new PDO("mysql:host=127.0.0.1:8080;dbname=push-notifications;charset=utf-8", "root", "");
 
-        $requete = $bd->prepare(" UPDATE push-notif SET p256=?, auth=? where endpoint=? ");
+        $requete = mysqli_connect('127.0.0.1:8080', 'root', '', 'push-notifications');
         $requete->execute(array($_POST['p256dh'], $_POST['auth'], $_POST['endpoint']));
         break;
 
     case 'DELETE':
         // delete the subscription corresponding to the endpoint
-        $bd = new PDO("mysql:host=127.0.0.1:8080;dbname=push-notifications;charset=utf-8", "root", "");
+        $bd = mysqli_connect('127.0.0.1:8080', 'root', '', 'push-notifications');
 
         $requete = $bd->prepare(" DELETE INTO push-notif(endpoint) Where endpoint= ? ");
         $requete->execute(array($_POST['endpoint'], $_POST['p256dh'], $_POST['auth']));
