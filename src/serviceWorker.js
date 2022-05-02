@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache_v6";
+const CACHE_NAME = "cache_v7";
 
 /** ACTION INSTALL **/
 this.addEventListener('install', event => {
@@ -21,25 +21,25 @@ this.addEventListener('install', event => {
 
 /** ACTON FETCH **/
 self.addEventListener("fetch", (event) => {
-    /*
     event.respondWith(
-        caches.open(CACHE_NAME).then(function (cache) {
-            return cache.match(event.request).then(function (response) {
-                return response || fetch(event.request).then(function (networkResponse) {
-                    cache.put(event.request, networkResponse.clone());
-                    return networkResponse;
-                });
-            });
-        }),
-    );
-    */
-    event.respondWith(
-        caches.match(event.request).catch(function () {
-            return fetch(event.request).then(function (response) {
-                return caches.open(CACHE_NAME).then(function (cache) {
-                    cache.put(event.request, response.clone());
+        caches.match(event.request).then(function (response) {
+            if (response) {
+                return response;
+            }
+
+            var fetchRequest = event.request.clone();
+
+            return fetch(fetchRequest).then(function (response) {
+                if (!response || response.status !== 200 || response.type !== 'basic') {
                     return response;
+                }
+
+                var responseToCache = response.clone();
+
+                caches.open(CACHE_NAME).then(function (cache) {
+                    cache.put(event.request, responseToCache);
                 });
+                return response;
             });
         })
     );
