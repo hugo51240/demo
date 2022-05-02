@@ -5,7 +5,7 @@ this.addEventListener('install', event => {
     self.skipWaiting();
     console.log('[Service Worker] is installed');
     event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
+        caches.open(CACHE_NAME).then(function (cache) {
             return cache.addAll([
                 '/',
                 './index.html',
