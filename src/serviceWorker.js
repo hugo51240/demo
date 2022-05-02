@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache_v1";
+const CACHE_NAME = "cache_v2";
 
 /** ACTION INSTALL **/
 this.addEventListener('install', event => {
