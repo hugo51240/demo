@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = subscription.getKey('auth');
     const contentEncoding = (PushManager.supportedContentEncodings || ['aesgcm'])[0];
 
-    return fetch('http://localhost:8080/push_subscription.php', {
+    return fetch('./push_subscription.php', {
       method,
       body: JSON.stringify({
         endpoint: subscription.endpoint,
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const contentEncoding = (PushManager.supportedContentEncodings || ['aesgcm'])[0];
         const jsonSubscription = subscription.toJSON();
-        fetch('localhost:8080/send_push_notification.php', {
+        fetch('./send_push_notification.php', {
           method: 'POST',
           body: JSON.stringify(Object.assign(jsonSubscription, { contentEncoding })),
         });
